@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post("/api/fileanalyse", upload.single("upfile"), (req, res, next) => {
+app.post("/api/fileanalyse", upload.single("upfile"), (req, res) => {
   console.log(req.body);
 });
 
