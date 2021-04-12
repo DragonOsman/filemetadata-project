@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config()
 const path = require("path");
 const multer = require("multer");
+const bodyParser = require("body-parser");
 
 const app = express();
 
@@ -13,8 +14,8 @@ app.get('/', function (req, res) {
     res.sendFile(process.cwd() + '/views/index.html');
 });
 
-
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const port = process.env.PORT || 3000;
 app.listen(port, function () {
