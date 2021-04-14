@@ -18,8 +18,18 @@ app.get("/", (req, res) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.post("/api/fileanalyse", upload.single("upfile"), (req, res) => {
-  console.log(req.body);
+app.post("/api/fileanalyse", upload.single("upfile"), (req, res, next) => {
+  const fileName = req.file.originalname;
+  const fileType = req.file.mimetype;
+  const fileSize = req.file.size;
+
+  res.json({
+    name: fileName,
+    type: fileType,
+    size: fileSize
+  });
+
+  return next;
 });
 
 const port = process.env.PORT || 3000;
